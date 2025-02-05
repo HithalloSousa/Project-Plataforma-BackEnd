@@ -65,6 +65,11 @@ MIDDLEWARE = [
 
 MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://customenglish.up.railway.app",
+    "http://localhost:3000",  # Origem local do React
+]
+
 CORS_ALLOWED_ORIGINS = [
     "customenglish.up.railway.app",
     "http://localhost:3000",  # Origem do frontend React
