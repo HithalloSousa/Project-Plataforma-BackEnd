@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.hashers import make_password
 from .models import Categoria, NivelAluno, Aluno, Fichamento, Professor, Tarefas, TarefaConcluida, Aula
 
 # Admin para o modelo Categoria
@@ -49,6 +50,11 @@ class ProfessorAdmin(admin.ModelAdmin):
     search_fields = ('nome', 'email', 'categoria__nome')
     list_filter = ('categoria',)
     ordering = ('nome',)
+
+    def save_model(self, request, obj, form, change):
+        if "senha" in form.changed_data:  # Se a senha foi alterada
+            obj.senha = make_password(obj.senha)
+        super().save_model(request, obj, form, change)
 
 # Admin para o modelo TarefaConcluida (se aplicável)
 @admin.register(TarefaConcluida)
