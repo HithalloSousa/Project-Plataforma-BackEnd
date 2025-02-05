@@ -66,10 +66,17 @@ MIDDLEWARE = [
 MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
 CORS_ALLOWED_ORIGINS = [
-    "https://customenglish.up.railway.app",
+    "customenglish.up.railway.app",
     "http://localhost:3000",  # Origem do frontend React
     "http://localhost:8000",
 ]
+
+
+ALLOWED_HOSTS = [
+    "customenglish.up.railway.app",
+    "localhost",  # Adicione outros domínios ou IPs, se necessário
+]
+
 
 # Opcional: Permitir credenciais (cookies, headers de autenticação, etc.)
 CORS_ALLOW_CREDENTIALS = True
