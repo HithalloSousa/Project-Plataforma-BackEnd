@@ -334,6 +334,15 @@ class AulaDetailView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except Aula.DoesNotExist:  # Corrigido para Aula.DoesNotExist
             return Response({"detail": "Aula não encontrada."}, status=status.HTTP_404_NOT_FOUND)
+    
+    def delete(self, request, aluno_id, id):
+        aluno = get_object_or_404(Aluno, id=aluno_id)
+        try:
+            aula = Aula.objects.get(id=id, aluno=aluno)
+            aula.delete()
+            return Response({"detail": "Aula deletada com sucesso."}, status=status.HTTP_204_NO_CONTENT)
+        except Aula.DoesNotExist:
+            return Response({"detail": "Aula não encontrada."}, status=status.HTTP_404_NOT_FOUND)
 
 
 

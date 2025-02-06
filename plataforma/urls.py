@@ -17,7 +17,7 @@ urlpatterns = [
     path('criar-fichamento/', FichamentoCreateView.as_view(), name='fichamento-create'),
     path('fichamento/<int:aluno_id>/', FichamentoDetailView.as_view(), name='fichamento-detail'),
     path('fichamento/<int:aluno_id>/<int:id>/', FichamentoDetailView.as_view(), name='fichamento-detail2'),
-    #Agenda
+    #Agenda Aulas
     path('criar-aulas/', AulaCreateView.as_view(), name='agenda-create'),
     path('aulas/<int:aluno_id>/', AulaDetailView.as_view(), name='agenda-detail'),
     #Nivel de inglês
