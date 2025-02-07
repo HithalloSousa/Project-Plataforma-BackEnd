@@ -337,13 +337,18 @@ class AulaDetailView(APIView):
     
     def delete(self, request, aluno_id, id):
         aluno = get_object_or_404(Aluno, id=aluno_id)
+
         try:
-            aula = Aula.objects.get(id=id, aluno=aluno)
-            aula.delete()
-            return Response({"detail": "Aula deletada com sucesso."}, status=status.HTTP_204_NO_CONTENT)
+            aula = get_object_or_404(Aula, id=id, alunos__id=aluno_id)  # Correção no filtro
+            aula.alunos.remove(aluno)  # Remove apenas o aluno dessa aula
+
+            # Se a aula não estiver associada a nenhum aluno após a remoção, pode ser deletada
+            if not aula.alunos.exists():
+                aula.delete()
+
+            return Response({"detail": "Aula removida com sucesso."}, status=status.HTTP_204_NO_CONTENT)
         except Aula.DoesNotExist:
             return Response({"detail": "Aula não encontrada."}, status=status.HTTP_404_NOT_FOUND)
-
 
 
 class AulaCreateView(APIView):

@@ -20,6 +20,7 @@ urlpatterns = [
     #Agenda Aulas
     path('criar-aulas/', AulaCreateView.as_view(), name='agenda-create'),
     path('aulas/<int:aluno_id>/', AulaDetailView.as_view(), name='agenda-detail'),
+    path('aulas-excluir/<int:aluno_id>/<int:id>/', AulaDetailView.as_view(), name='delete-agenda-detail'),
     #Nivel de inglês
     path('nivels/', NiveisListView.as_view(), name='niveis list'),
     #Tarefas Professor
