@@ -1,8 +1,10 @@
 from django.urls import path
-from .views import (CustomTokenObtainPairView, LoginView, AlunoListView, AlunoDetailView, 
-                    AlunoCreateView, FichamentoCreateView, NiveisListView, FichamentoDetailView, 
-                    TarefasListView,TarefasCreateView, TarefasDetailView, AtribuirTarefaView, ConcluirTarefaView, CorrigirTarefaView,
-                    ExcluirTarefaView, RemoverAlunoDaTarefaView, TarefasConcluidasViews, AulaDetailView, AulaCreateView)
+from .views.auth_views import CustomTokenObtainPairView, LoginView
+from .views.aluno_views import AlunoListView, AlunoDetailView, AlunoCreateView
+from .views.tarefas_views import TarefasDetailView, TarefasListView, TarefasCreateView, AtribuirTarefaView, ConcluirTarefaView, TarefasConcluidasViews, CorrigirTarefaView, ExcluirTarefaView, RemoverAlunoDaTarefaView
+from .views.fichamento_views import FichamentoCreateView, FichamentoDetailView
+from .views.aula_views import AulaDetailView, AulaCreateView
+from .views.niveis_views import NiveisListView
 from django.conf import settings
 from django.conf.urls.static import static
 

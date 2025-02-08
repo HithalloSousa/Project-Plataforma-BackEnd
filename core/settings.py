@@ -38,8 +38,20 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'plataforma',
-    'whitenoise.runserver_nostatic'
+    'whitenoise.runserver_nostatic',
+    "cloudinary",
+    "cloudinary_storage",
 ]
+
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
+MEDIA_URL = f"https://res.cloudinary.com/dxy12ffx0/"
+
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": "dxy12ffx0",
+    "API_KEY": "394637333135441",
+    "API_SECRET": "oxqcayGi_nwpcdjePr_Z2biM4Mg",
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [

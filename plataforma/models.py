@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password, check_password
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -59,10 +60,10 @@ class TarefaConcluida(models.Model):
     """
     aluno = models.ForeignKey('Aluno', on_delete=models.CASCADE)  # Relação com o aluno
     tarefa = models.ForeignKey('Tarefas', on_delete=models.CASCADE)  # Relação com a tarefa
-    imagem = models.ImageField(upload_to='tarefas/', null=True, blank=True)
+    imagem = CloudinaryField('tarefas/', null=True, blank=True)
     concluido = models.BooleanField(default=False)  # Status de conclusão
     concluidoTime = models.DateTimeField(null=True, blank=True)  # Data de conclusão
-    imagem_correcao = models.ImageField(upload_to='tarefas/correcoes/', null=True, blank=True)
+    imagem_correcao = CloudinaryField('tarefas/correcoes/', null=True, blank=True)
 
     class Meta:
         unique_together = ('aluno', 'tarefa')  # Garante que cada aluno só pode ter uma entrada por tarefa
