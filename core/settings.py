@@ -2,6 +2,9 @@ import os
 import dj_database_url
 from pathlib import Path
 from dotenv import load_dotenv
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Carrega as variáveis do .env apenas no ambiente local
 if os.getenv("RAILWAY") is None:
@@ -43,15 +46,16 @@ INSTALLED_APPS = [
     "cloudinary_storage",
 ]
 
+# Configurações do Cloudinary
+cloudinary.config(
+    cloud_name=os.getenv("CLOUD_NAME"),
+    api_key=os.getenv("API_KEY"),
+    api_secret=os.getenv("API_SECRET"),
+)
+
+# Configuração para upload de arquivos
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
-MEDIA_URL = f"https://res.cloudinary.com/dxy12ffx0/"
-
-CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": "dxy12ffx0",
-    "API_KEY": "394637333135441",
-    "API_SECRET": "oxqcayGi_nwpcdjePr_Z2biM4Mg",
-}
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
