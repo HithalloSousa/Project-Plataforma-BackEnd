@@ -5,6 +5,8 @@ from .views.tarefas_views import TarefasDetailView, TarefasListView, TarefasCrea
 from .views.fichamento_views import FichamentoCreateView, FichamentoDetailView
 from .views.aula_views import AulaDetailView, AulaCreateView
 from .views.niveis_views import NiveisListView
+from .views.materias_view import MaterialCreateView, MaterialListView, MaterialDeleteView
+from .views.categoriaMaterial_views import CategoriaMateriaisListView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -35,4 +37,10 @@ urlpatterns = [
     path('corrigir-tarefa/<int:pk>/', CorrigirTarefaView.as_view(), name='corrigir-tarefa'),
     #Tarefas Aluno
     path('tarefas/concluir-tarefa/', ConcluirTarefaView.as_view(), name='concluir-tarefa'),
+    #Materiais
+    path('materiais/', MaterialListView.as_view(), name='material-list'),
+    path('materiais/criar/', MaterialCreateView.as_view(), name='material-create'),
+    path('materiais/deletar/<int:pk>/', MaterialDeleteView.as_view(), name='material-delete'),
+    path('categorias-materiais/', CategoriaMateriaisListView.as_view(), name='listar-categorias-materiais'),
+
 ] 

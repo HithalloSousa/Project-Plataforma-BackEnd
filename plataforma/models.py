@@ -16,6 +16,28 @@ class Categoria(models.Model):
         return f'{self.nome}'
 
 
+class CategoriaMaterial(models.Model):
+    tipo = models.CharField(max_length=50, choices=[
+        ('Texto', 'Banco de Textos'),
+        ('Chart', 'Banco de Charts'),
+        ('Link', 'Banco de Links')
+    ])
+
+    def __str__(self):
+        return self.tipo
+
+
+# Modelo de Materias
+class Material(models.Model):
+    categoria = models.ForeignKey(CategoriaMaterial, on_delete=models.CASCADE)
+    conteudo = models.TextField(blank=True, null=True)
+    chart = CloudinaryField('charts/', null=True, blank=True)
+    link = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return f"Material {self.id} - {self.categoria.tipo}"
+
+
 # Modelo Nível dos Alunos
 class NivelAluno(models.Model):
     class Meta:

@@ -1,5 +1,22 @@
 from rest_framework import serializers
-from .models import Categoria, NivelAluno, TarefaConcluida, Tarefas, Fichamento, Aluno, Professor, Aula
+from .models import Categoria, NivelAluno, TarefaConcluida, Tarefas, Fichamento, Aluno, Professor, Aula, CategoriaMaterial, Material
+
+class CategoriaMaterialSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CategoriaMaterial
+        fields = ['id', 'tipo']
+
+
+class MaterialSerializer(serializers.ModelSerializer):
+    categoria = CategoriaMaterialSerializer(read_only=True)
+    categoria_id = serializers.PrimaryKeyRelatedField(
+        queryset=CategoriaMaterial.objects.all(), source="categoria", write_only=True
+    )  # Aceita o ID no POST
+
+    class Meta:
+        model = Material
+        fields = ['id', 'categoria', 'categoria_id','conteudo', 'chart', 'link']
+
 
 
 class CategoriaSerializer(serializers.ModelSerializer):

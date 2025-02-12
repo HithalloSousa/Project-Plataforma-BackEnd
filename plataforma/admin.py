@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.hashers import make_password
-from .models import Categoria, NivelAluno, Aluno, Fichamento, Professor, Tarefas, TarefaConcluida, Aula
+from .models import Categoria, NivelAluno, Aluno, Fichamento, Professor, Tarefas, TarefaConcluida, Aula, CategoriaMaterial, Material
 
 # Admin para o modelo Categoria
 @admin.register(Categoria)
@@ -8,6 +8,16 @@ class CategoriaAdmin(admin.ModelAdmin):
     list_display = ("id", "nome")
     search_fields = ("nome",)
     ordering = ("nome",)
+
+# Admin para o modelo Categoria Material
+@admin.register(CategoriaMaterial)
+class CategoriaMaterialAdmin(admin.ModelAdmin):
+    list_display = ("id", "tipo")
+    search_fields = ("tipo",)
+    ordering = ("tipo",)
+
+# Admin para o modelo Material
+admin.site.register(Material)
 
 # Admin para o modelo NivelAluno
 @admin.register(NivelAluno)
