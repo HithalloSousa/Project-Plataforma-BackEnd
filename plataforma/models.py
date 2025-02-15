@@ -30,6 +30,7 @@ class CategoriaMaterial(models.Model):
 # Modelo de Materias
 class Material(models.Model):
     categoria = models.ForeignKey(CategoriaMaterial, on_delete=models.CASCADE)
+    titulo = models.CharField(max_length=100, default='Título Padrão')
     conteudo = models.TextField(blank=True, null=True)
     chart = CloudinaryField('charts/', null=True, blank=True)
     link = models.URLField(blank=True, null=True)
